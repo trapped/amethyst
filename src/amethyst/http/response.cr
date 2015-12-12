@@ -8,7 +8,7 @@ module Amethyst
 
       include Support::HeaderHelper
 
-      def initialize(@status=nil, @body="" : String, @headers=HTTP::Headers.new)
+      def initialize(@status=200, @body="" : String, @headers=HTTP::Headers.new)
       end
 
       def set(@status, @body)
