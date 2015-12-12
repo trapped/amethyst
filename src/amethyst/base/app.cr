@@ -48,7 +48,7 @@ module Amethyst
         @port = port.to_i
         run_string    = "Amethyst #{VERSION} serving application \"#{@name}\" at http://127.0.0.1:#{@port}" #TODO move to Logger class
         puts run_string
-        server = HTTP::Server.new port, @http_handler
+        server = HTTP::Server.new "0.0.0.0", port, @http_handler
         server.listen
       end
 
