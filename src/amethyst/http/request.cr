@@ -104,7 +104,7 @@ module Amethyst
 
       def cookies
         if (cookie_string = headers["Cookie"]?) && (!headers["Cookie"].empty?)
-          @cookies.from_hash(parse_cookies cookie_string as String)
+          @cookies.from_hash(parse_cookies cookie_string.as(String))
         end
         @cookies
       end
@@ -133,7 +133,7 @@ module Amethyst
               rescue IndexError
                 value = ""
               end
-              hash[key as String] = value
+              hash[key.as(String)] = value
             end
           end
         end

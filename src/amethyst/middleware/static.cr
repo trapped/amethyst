@@ -36,7 +36,7 @@ module Amethyst
 
       private def mime_type(path)
         mime_type = "text/plain"
-        mime_type = Mime.from_ext(File.extname(path).gsub(".", "")) as String
+        mime_type = Mime.from_ext(File.extname(path).gsub(".", "")).as(String)
        end
     end
   end

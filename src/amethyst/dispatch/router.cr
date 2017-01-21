@@ -59,8 +59,8 @@ module Amethyst
         match = Regex.new(regexp).match(request.path)
 
         if match
-          controller = match["controller"] as String
-          action     = match["action"]     as String
+          controller = match["controller"].as(String)
+          action     = match["action"].as(String)
           controller = Base::App.settings.namespace+controller.capitalize+"Controller"
           if @controllers.has_key? controller
             controller_instance = @controllers_instances[controller] ||=  @controllers.fetch(controller).new
