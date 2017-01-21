@@ -84,8 +84,8 @@ module Amethyst
       # Creates a hash for controller actions
       # Then, invokes actions method to add actions to the hash
       def initialize()
-        @request :: Http::Request
-        @response :: Http::Response
+        @request : Http::Request
+        @response : Http::Response
         @actions = {} of String => ->
         add_actions
         @before_callbacks = {} of String => Array(Proc(Bool))

@@ -18,7 +18,7 @@ module Amethyst
       def initialize()
         @routes      = [] of Dispatch::Route
         @controllers = {} of String => Base::Controller.class
-        @matched_route :: Dispatch::Route
+        @matched_route : Dispatch::Route
         @controllers_instances = {} of String => Base::Controller
       end
 
