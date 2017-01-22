@@ -5,6 +5,8 @@ module Amethyst
       getter :controllers
       getter :matched_route
 
+      @matched_route : Dispatch::Route?
+
       include Support::RoutesPainter
       include Sugar::Klass
       singleton_INSTANCE
@@ -18,8 +20,8 @@ module Amethyst
       def initialize()
         @routes      = [] of Dispatch::Route
         @controllers = {} of String => Base::Controller.class
-        @matched_route : Dispatch::Route
         @controllers_instances = {} of String => Base::Controller
+        @matched_route = nil
       end
 
       # Adds controller to hash @controllers and make it available for app
@@ -48,10 +50,10 @@ module Amethyst
 
       # Process regular routes (which are in @routes)
       def process_named_route(request : Http::Request, response : Http::Response)
-        controller = @matched_route.controller
+        controller = @matched_route.not_nil!.controller
         controller_instance = @controllers_instances[controller] ||=  @controllers.fetch(controller).new
         controller_instance.set_env(request, response)
-        response = @controllers_instances[controller].call_action(@matched_route.action)
+        response = @controllers_instances[controller].call_action(@matched_route.not_nil!.action)
       end
 
       def process_default_route(request : Http::Request, response : Http::Response)
