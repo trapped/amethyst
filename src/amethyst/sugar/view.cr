@@ -14,7 +14,7 @@ module Amethyst
       end
 
       macro view(name, path=__DIR__)
-        class {{name.id.capitalize}}View < Base::View
+        class {{name.id.capitalize}}View < Amethyst::Base::View
           def initialize(controller)
             @controller = controller
             @response = Http::Response.new
