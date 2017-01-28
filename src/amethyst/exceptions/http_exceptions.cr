@@ -11,15 +11,15 @@ module Amethyst
 
     class UnknownContentType < AmethystException
 
-      def initialize(@ext)
+      def initialize(@ext : String)
         super("Unknown content-type for file extension #{@ext}")
       end
     end
 
     class UnsupportedHttpMethod < AmethystException
 
-      def initialize(@ext)
-        super("Method #{@method} is not supported. Use #{Http::METHODS.join(" ")}")
+      def initialize(@ext : String)
+        super("Method #{@ext} is not supported. Use #{Http::METHODS.join(" ")}")
       end
     end
 
@@ -41,16 +41,16 @@ module Amethyst
       getter :method
       getter :allowed
 
-      def initialize(@method, allowed : Array)
+      def initialize(@method : String, allowed : Array)
         @allowed = allowed.join(",")
-        super(405, "Method #{method} not allowed. Allowed : #{@allowed}")
+        super(405, "Method #{@method} not allowed. Allowed : #{@allowed}")
       end
     end
 
     class HttpNotImplemented < HttpException
       getter :method
 
-      def initialize(@method)
+      def initialize(@method : String)
         super(501, "Method #{@method} not implemented")
       end
     end
